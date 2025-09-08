@@ -22,7 +22,7 @@ export default function Home() {
         } as React.CSSProperties
       }
     >
-      <AppSidebar  />
+      <AppSidebar variant="inset" />
       <SidebarInset>
         <MainHeader
           user={{ 
@@ -34,7 +34,7 @@ export default function Home() {
             { label: "Dashboard", href: "/dashboard" }
           ]}
         />
-        <div className="mx-auto bg-gray-200 h-[200px] w-[50%] rounded-lg flex justify-center items-center text-center">
+        <div className="mx-auto bg-gray-200 h-[600px] w-[85%] mt-[30px] rounded-lg flex justify-center items-center text-center">
         <Carousel>
           <CarouselPrevious />
           <CarouselContent>

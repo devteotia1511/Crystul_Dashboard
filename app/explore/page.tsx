@@ -3,13 +3,7 @@ import {
   SidebarInset,
   SidebarProvider,
 } from "@/components/ui/sidebar"
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
+
 import { MainHeader } from "@/components/main-header"
 
 export default function Home() {
@@ -22,7 +16,7 @@ export default function Home() {
         } as React.CSSProperties
       }
     >
-      <AppSidebar  />
+      <AppSidebar variant="inset" />
       <SidebarInset>
         <MainHeader
           user={{ 
@@ -31,20 +25,10 @@ export default function Home() {
             avatar: "/avatars/profile.jpg"
           }}
           breadcrumbs={[
-            { label: "Dashboard", href: "/dashboard" }
+            { label: "Explore", href: "/explore" }
           ]}
         />
-        <div className="mx-auto bg-gray-200 h-[200px] w-[50%] rounded-lg flex justify-center items-center text-center">
-        <Carousel>
-          <CarouselPrevious />
-          <CarouselContent>
-            <CarouselItem>1</CarouselItem>
-            <CarouselItem>2</CarouselItem>
-            <CarouselItem>3</CarouselItem>
-          </CarouselContent>
-          <CarouselNext />
-        </Carousel>
-        </div>
+        
         
       </SidebarInset>
     </SidebarProvider>
