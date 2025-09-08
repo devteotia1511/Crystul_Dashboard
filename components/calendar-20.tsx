@@ -8,7 +8,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card"
 
 interface Calendar20Props {
   selected: Date | undefined
-  onChange: (date: Date | null) => void
+  onChange: (date: Date | undefined) => void
 }
 
 export default function Calendar20({ selected, onChange }: Calendar20Props) {
@@ -32,7 +32,7 @@ export default function Calendar20({ selected, onChange }: Calendar20Props) {
           <Calendar
             mode="single"
             selected={selected}
-            onSelect={onChange}
+            onSelect={(date) => onChange(date)}
             defaultMonth={selected}
             disabled={bookedDates}
             showOutsideDays={false}
