@@ -6,10 +6,12 @@ import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 
-export default function Calendar20() {
-  const [date, setDate] = React.useState<Date | undefined>(
-    new Date(2025, 5, 12)
-  )
+interface Calendar20Props {
+  selected: Date | undefined
+  onChange: (date: Date | null) => void
+}
+
+export default function Calendar20({ selected, onChange }: Calendar20Props) {
   const [selectedTime, setSelectedTime] = React.useState<string | null>("10:00")
   const timeSlots = Array.from({ length: 37 }, (_, i) => {
     const totalMinutes = i * 15
@@ -29,9 +31,9 @@ export default function Calendar20() {
         <div className="p-6">
           <Calendar
             mode="single"
-            selected={date}
-            onSelect={setDate}
-            defaultMonth={date}
+            selected={selected}
+            onSelect={onChange}
+            defaultMonth={selected}
             disabled={bookedDates}
             showOutsideDays={false}
             modifiers={{
@@ -65,12 +67,12 @@ export default function Calendar20() {
       </CardContent>
       <CardFooter className="flex flex-col gap-4 border-t px-6 !py-5 md:flex-row">
         <div className="text-sm">
-          {date && selectedTime ? (
+          {selected && selectedTime ? (
             <>
               Your meeting is booked for{" "}
               <span className="font-medium">
                 {" "}
-                {date?.toLocaleDateString("en-US", {
+                {selected?.toLocaleDateString("en-US", {
                   weekday: "long",
                   day: "numeric",
                   month: "long",
@@ -83,7 +85,7 @@ export default function Calendar20() {
           )}
         </div>
         <Button
-          disabled={!date || !selectedTime}
+          disabled={!selected || !selectedTime}
           className="w-full md:ml-auto md:w-auto"
           variant="outline"
         >
