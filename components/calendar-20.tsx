@@ -8,7 +8,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card"
 
 interface Calendar20Props {
   selected: Date | undefined
-  onChange: (date: Date | undefined) => void
+  onChange: (date: Date | null | undefined) => void
 }
 
 export default function Calendar20({ selected, onChange }: Calendar20Props) {
