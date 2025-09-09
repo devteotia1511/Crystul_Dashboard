@@ -1,7 +1,6 @@
 "use client"
 
-import React, { useState, useRef, useEffect } from "react"
-import { CalendarIcon } from "@radix-ui/react-icons"
+import React from "react"
 import { IconSearch, IconFilter, IconChevronDown } from "@tabler/icons-react"
 import { SidebarTrigger } from "@/components/ui/sidebar"
 import {
@@ -13,7 +12,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import Calendar20 from "@/components/calendar-20"
 import {
   Avatar,
   AvatarFallback,
@@ -47,24 +45,9 @@ interface MainHeaderProps {
 }
 
 export function MainHeader({
-  user = { name: "User", email: "user@example.com", avatar: "" },
+  user = { name: "Dev", email: "Dev@business.com", avatar: "/avatars/profile.jpg" },
   breadcrumbs = [],
 }: MainHeaderProps) {
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null) // selected date
-  const [calendarOpen, setCalendarOpen] = useState(false) // toggle calendar visibility
-  const calendarRef = useRef<HTMLDivElement | null>(null)
-
-  // Close calendar when clicking outside
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (calendarRef.current && !calendarRef.current.contains(event.target as Node)) {
-        setCalendarOpen(false)
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside)
-    return () => document.removeEventListener("mousedown", handleClickOutside)
-  }, [])
-
   return (
     <div className="flex flex-col w-full">
       <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4 lg:px-6">
@@ -90,25 +73,6 @@ export function MainHeader({
                 <DropdownMenuItem>Custom Filter...</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-          </div>
-
-          {/* Calendar Button */}
-          <div className="relative" ref={calendarRef}>
-            <Button
-              onClick={() => setCalendarOpen(!calendarOpen)}
-              variant="outline"
-              className="bg-white"
-            >
-              <CalendarIcon className="h-2 w-2 text-black" />
-            </Button>
-            {calendarOpen && (
-              <div className="absolute mt-2 z-50">
-                <Calendar20
-                  selected={selectedDate ?? undefined}
-                  onChange={(date: Date | null) => setSelectedDate(date)}
-                />
-              </div>
-            )}
           </div>
 
           {/* Center - Search bar */}

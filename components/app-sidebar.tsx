@@ -29,7 +29,7 @@ const data = {
   user: {
     name: "CRYSTUL",
     email: "crystul@business.com",
-    avatar: "/avatars/shadcn.jpg",
+    avatar: "/avatars/profile.jpg",
   },
   navMain: [
     {
